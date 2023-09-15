@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.delivery.iceway.status.StatusMapper">
+
+    <select id="getAllDelivery" resultType="Delivery">
+        SELECT
+            d.id,
+            JSON_UNQUOTE(JSON_EXTRACT(c.customer_data, '$.name')) AS customers_name,
+            d.latitude,
+            d.longitude,
+            d.temperature,
+            MAX(d.delivery_time) AS delivery_time, 
+            MAX(d.delivery_status) AS delivery_status,
+            MAX(d.recall_status) AS recall_status,
+            MAX(d.arrival_time) AS arrival_time,
+            MAX(d.recall_time) AS recall_time, 
+            JSON_UNQUOTE(JSON_EXTRACT(p.product_data, '$.name')) AS product_name,
+            MAX(r.id) AS recall_id, 
+            MAX(r.name) AS recall_name 
+        FROM
+            delivery d
+        LEFT JOIN
+            customers c ON d.id = c.id
+        LEFT JOIN
+            products p ON d.id = p.id
+        LEFT JOIN
+            recall r ON d.id = r.delivery_id
+        GROUP BY
+            d.id
+    </select>
+
+    <select id ="getDeliveryById">
+        SELECT id, temperature, recall_status FROM delivery
+        WHERE id = #{orderId};
+    </select>
+
+    <update id="recallUpdate">
+        UPDATE delivery
+        SET recall_status = true, recall_time = #{recall_time}
+        WHERE id = #{delivery_id}
+    </update>
+
+    <insert id="insertRecall">
+        INSERT INTO recall (name, delivery_id)
+        VALUES (#{name}, #{delivery_id})
+    </insert>
+
+    <select id="getRecalls" resultType="Recall">
+        SELECT * FROM recall
+    </select>
+
+    <delete id="deleteRecall" parameterType="int">
+        DELETE FROM recall WHERE delivery_id = #{delivery_id}
+    </delete>
+
+</mapper>

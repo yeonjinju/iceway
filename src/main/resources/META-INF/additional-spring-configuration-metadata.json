@@ -1,0 +1,22 @@
+{"properties": [
+  {
+    "name": "spring.rabbitmq.queue.name",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.rabbitmq.queue.name'"
+  },
+  {
+    "name": "spring.rabbitmq.routing.key",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.rabbitmq.routing.key'"
+  },
+  {
+    "name": "spring.rabbitmq.exchange.name",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.rabbitmq.exchange.name'"
+  },
+  {
+    "name": "kakao.api.key",
+    "type": "java.lang.String",
+    "description": "A description for 'kakao.api.key'"
+  }
+]}

@@ -1,0 +1,26 @@
+# server:
+#   port:
+
+# spring:
+#   mvc:
+#     view:
+#       prefix:
+#       suffix:
+#   datasource:
+#     url:
+#     username:
+#     password:
+#     driver-class-name:
+#   rabbitmq:
+#     host:
+#     port:
+#     username: 
+#     password:
+#     ssl:
+#       enabled:
+#     queue:
+#       name:
+
+# mybatis:
+#   type-aliases-package:
+#   mapper-locations:

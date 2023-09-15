@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.delivery.iceway.history.HistoryMapper">
+
+	<sql id="searchCondition">
+		<choose>
+			<when test="name != null">				<!-- 고객 성명 -->
+				where JSON_UNQUOTE(JSON_EXTRACT(c.customer_data, '$.name')) LIKE CONCAT('%', #{name}, '%')
+			</when>
+			<when test="delivery_time != null">				<!-- 주문 날짜 -->
+				<choose>
+					<when test="dateString.length() == 14">						<!-- 초 단위 조회 -->
+						where delivery_time = DATE_FORMAT(#{delivery_time} , '%Y-%m-%d %H:%i:%s')
+					</when>
+					<when test="dateString.length() == 12">						<!-- 분 단위 조회 -->
+						where delivery_time between DATE_FORMAT(#{delivery_time}, '%Y-%m-%d %H:%i') and
+						DATE_SUB(DATE_ADD(
+						DATE_FORMAT(#{delivery_time}, '%Y-%m-%d %H:%i') , interval 1 minute), INTERVAL 1 SECOND)
+					</when>
+					<when test="dateString.length() == 10">						<!-- 시 단위 조회 -->
+						where delivery_time between DATE_FORMAT(#{delivery_time}, '%Y-%m-%d %H') and
+						DATE_SUB(DATE_ADD(
+						DATE_FORMAT(#{delivery_time}, '%Y-%m-%d %H'), interval 1 hour), interval 1 second)
+					</when>
+					<when test="dateString.length() == 8">						<!-- 일일 단위 조회 -->
+						where delivery_time between DATE_FORMAT(#{delivery_time}, '%Y-%m-%d') and
+						DATE_SUB(DATE_ADD(
+						DATE_FORMAT(#{delivery_time}, '%Y-%m-%d'), interval 1 day), INTERVAL 1 SECOND)
+					</when>
+					<when test="dateString.length() == 6">						<!-- 월 단위 조회 -->
+						where delivery_time between DATE_FORMAT(#{delivery_time}, '%Y-%m-01') and
+						DATE_SUB(DATE_ADD(
+						DATE_FORMAT(#{delivery_time},'%Y-%m-01'), interval 1 month), INTERVAL 1 SECOND)
+					</when>
+					<when test="dateString.length() == 4">						<!-- 년 단위 조회 -->
+						where YEAR(delivery_time) = #{delivery_time}
+					</when>
+				</choose>
+			</when>
+			<when test="arrival_time != null">				<!-- 도착 날짜 -->
+				<choose>
+					<when test="dateString.length() == 14">						<!-- 초 단위 조회 -->
+						where arrival_time = DATE_FORMAT(#{arrival_time} , '%Y-%m-%d %H:%i:%s')
+					</when>
+					<when test="dateString.length() == 12">						<!-- 분 단위 조회 -->
+						where arrival_time between DATE_FORMAT(#{arrival_time}, '%Y-%m-%d %H:%i') and
+						DATE_SUB(DATE_ADD(
+						DATE_FORMAT(#{arrival_time}, '%Y-%m-%d %H:%i') , interval 1 minute), INTERVAL 1 SECOND)
+					</when>
+					<when test="dateString.length() == 10">						<!-- 시 단위 조회 -->
+						where arrival_time between DATE_FORMAT(#{arrival_time},'%Y-%m-%d %H') and
+						DATE_SUB(DATE_ADD(
+						DATE_FORMAT(#{arrival_time}, '%Y-%m-%d %H') , interval 1 hour), INTERVAL 1 SECOND)
+					</when>
+					<when test="dateString.length() == 8">						<!-- 일일 단위 조회 -->
+						where arrival_time between DATE_FORMAT(#{arrival_time},'%Y-%m-%d') and
+						DATE_SUB(DATE_ADD(
+						DATE_FORMAT(#{arrival_time}, '%Y-%m-%d') , interval 1 day), INTERVAL 1 SECOND)
+					</when>
+					<when test="dateString.length() == 6">						<!-- 월 단위 조회 -->
+						where arrival_time between DATE_FORMAT(#{arrival_time}, '%Y-%m-01') and
+						DATE_SUB(DATE_ADD(
+						DATE_FORMAT(#{arrival_time},'%Y-%m-01') , interval 1 month), INTERVAL 1 SECOND)
+					</when>
+					<when test="dateString.length() == 4">						<!-- 년 단위 조회 -->
+						where YEAR(arrival_time) = #{arrival_time}
+					</when>
+				</choose>
+			</when>
+		</choose>
+	</sql>
+
+	<select id="getHistory" resultType="History">
+		select *
+		from(
+		select result1.* , @R:=@R+1 as rnum
+		from(
+		select d.id,
+		JSON_UNQUOTE(JSON_EXTRACT(c.customer_data, '$.name')) AS name,
+		d.delivery_status,
+		d.recall_status,
+		d.delivery_time,
+		d.arrival_time,
+		d.recall_time
+		from delivery d
+		LEFT JOIN customers c ON d.id = c.id
+		<include refid="searchCondition"></include>
+		order by d.id desc
+		) result1 where(@R:=0)=0
+		) result2
+		where rnum between #{startRowNum} and #{endRowNum}
+	</select>
+
+	<select id="getCount" resultType="int">
+		select IFNULL(MAX(@R:=@R+1),0)
+		from(
+		select d.id,
+		JSON_UNQUOTE(JSON_EXTRACT(c.customer_data, '$.name')) AS name,
+		d.delivery_status,
+		d.recall_status,
+		d.delivery_time,
+		d.arrival_time
+		from delivery d
+		LEFT JOIN customers c ON d.id = c.id
+		<include refid="searchCondition"></include>
+		) result
+		where (@R:=0)=0
+	</select>
+
+</mapper>

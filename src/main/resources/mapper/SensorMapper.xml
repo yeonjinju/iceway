@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.delivery.iceway.sensor.SensorMapper">
+
+    <select id="getDeliveryCoordinates" resultType="Customers">
+        SELECT 
+            id, 
+            JSON_UNQUOTE(JSON_EXTRACT(customer_data, '$.name')) as name, 
+            JSON_UNQUOTE(JSON_EXTRACT(customer_data, '$.latitude')) as latitude, 
+            JSON_UNQUOTE(JSON_EXTRACT(customer_data, '$.longitude')) as longitude 
+        FROM customers WHERE id = #{id}
+    </select>
+
+    <insert id="insertDelivery">
+        INSERT INTO delivery (id, latitude, longitude, temperature, delivery_status, recall_status, delivery_time, arrival_time)
+        VALUES (#{id}, #{latitude}, #{longitude}, #{temperature}, false, false, #{delivery_time}, #{arrival_time})
+    </insert>
+
+    <update id="updateDelivery">
+        UPDATE delivery
+        SET latitude = #{latitude}, longitude = #{longitude}, temperature = #{temperature}, delivery_time = #{delivery_time}
+        WHERE id = #{id}
+    </update>
+
+    <update id="endDelivery">
+        UPDATE delivery
+        SET delivery_status = true, delivery_time = #{delivery_time}
+        WHERE id = #{id}
+    </update>
+
+    <select id="getRecallStatus" resultType="boolean">
+        SELECT COALESCE(recall_status, false) 
+        FROM delivery 
+        WHERE id = #{id}
+    </select>
+
+    <select id="getProduct" resultType="Products">
+        SELECT 
+            id, 
+            JSON_UNQUOTE(JSON_EXTRACT(product_data, '$.name')) as name, 
+            JSON_UNQUOTE(JSON_EXTRACT(product_data, '$.price')) as price, 
+            JSON_UNQUOTE(JSON_EXTRACT(product_data, '$.temperature')) as temperature 
+        FROM products WHERE id = #{id}
+    </select>
+
+    <delete id="resetDelivery">
+        DELETE FROM delivery
+    </delete>
+
+    <delete id="resetRecall">
+        DELETE FROM recall
+    </delete>
+
+</mapper>
