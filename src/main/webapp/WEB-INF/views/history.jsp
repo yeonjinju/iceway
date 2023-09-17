@@ -23,8 +23,8 @@
 
 	<div class="my-container">
 		<div class="filter">
-			<form action="history" method="get">
-				<a class="reset" href="history"><svg
+			<form action="admin/history" method="get">
+				<a class="reset" href="admin/history"><svg
 						xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 						fill="currentColor" class="bi bi-arrow-clockwise"
 						viewBox="0 0 16 16">
@@ -77,15 +77,15 @@
 			<ul>
 				<c:if test="${intArray[1] ne 1}">
 					<li><a
-						href="history?pageNum=${intArray[1]-1}&condition=${strArray[1]}&keyword=${strArray[0]}">prev</a></li>
+						href="admin/history?pageNum=${intArray[1]-1}&condition=${strArray[1]}&keyword=${strArray[0]}">prev</a></li>
 				</c:if>
 				<c:forEach var="i" begin="${intArray[1]}" end="${intArray[2]}">
 					<li class="${intArray[0] eq i ? 'active' : ''}"><a
-						href="history?pageNum=${i}&condition=${strArray[1]}&keyword=${strArray[0]}">${i}</a></li>
+						href="admin/history?pageNum=${i}&condition=${strArray[1]}&keyword=${strArray[0]}">${i}</a></li>
 				</c:forEach>
 				<c:if test="${intArray[2] lt intArray[3]}">
 					<li><a
-						href="history?pageNum=${intArray[2]+1}&condition=${strArray[1]}&keyword=${strArray[0]}">next</a></li>
+						href="admin/history?pageNum=${intArray[2]+1}&condition=${strArray[1]}&keyword=${strArray[0]}">next</a></li>
 				</c:if>
 			</ul>
 		</div>

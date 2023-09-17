@@ -11,10 +11,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.delivery.iceway.domain.User;
 import com.delivery.iceway.generator.DeliveryGenerator;
 import com.delivery.iceway.generator.ScheduledService;
 import com.delivery.iceway.sensor.SensorMapper;
+import com.delivery.iceway.user.UserMapper;
 
 import lombok.RequiredArgsConstructor;
 
@@ -28,6 +31,7 @@ public class IcewayApplication {
 	private final AmqpAdmin amqpAdmin;
 	private final Queue queue;
 	private final ScheduledService schedul;
+	private final UserMapper userMapper;
 
 	private final AtomicInteger runCount = new AtomicInteger(1);
 	private AtomicBoolean shouldRun = new AtomicBoolean(false);
@@ -42,6 +46,12 @@ public class IcewayApplication {
 	 */
 	@PostConstruct
 	public void init() {
+		sensorMapper.resetDelivery();
+		sensorMapper.resetRecall();
+		userMapper.resetAdmin();
+		String samplePwd = new BCryptPasswordEncoder().encode("1234");
+		User user = new User(1, "admin", samplePwd, "ADMIN");
+		userMapper.insertAll(user);
 		amqpAdmin.declareQueue(queue);
 	}
 
@@ -87,5 +97,4 @@ public class IcewayApplication {
 			}
 		}
 	}
-
 }

@@ -1,6 +1,6 @@
 <ul>
   <li>
-    <a href="/history">
+    <a href="/admin/history">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="30"
@@ -16,7 +16,7 @@
     </a>
   </li>
   <li>
-    <a href="/status">
+    <a href="/admin/status">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="30"
@@ -37,7 +37,7 @@
 <button id="resetButton">Reset</button>
 <script>
   document.getElementById("startButton").addEventListener("click", function () {
-    fetch("/startScheduler", {
+    fetch("/admin/startScheduler", {
       method: "POST",
     })
       .then((response) => {
@@ -52,7 +52,7 @@
   });
 
   document.getElementById("stopButton").addEventListener("click", function () {
-    fetch("/stopScheduler", {
+    fetch("/admin/stopScheduler", {
       method: "POST",
     })
       .then((response) => {
@@ -67,7 +67,7 @@
   });
 
   document.getElementById("resetButton").addEventListener("click", function () {
-    fetch("/resetScheduler", {
+    fetch("/admin/resetScheduler", {
       method: "POST", // GET에서 POST로 변경
     }).then((response) => {
       if (response.ok) {
