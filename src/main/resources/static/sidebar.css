@@ -1,13 +1,34 @@
+.logoIcon {
+  width: 130px;
+  margin-top: 40px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+
+/*   sidebar css 시작 */
 .side-bar {
   display: flex;
   flex-direction: column;
   position: absolute;
-  min-height: 91%;
-  width: 160px;
-  background-color: #8fa0bb;
-  z-index: 2;
+  min-height: 97.5%;
+  width: 250px;
+  background-color: #d2e8fa;
+  z-index: 1;
   margin-bottom: 20px;
+  margin-left:15px;
   padding: 20px;
+  top:10px;
+  border-radius: 20px;
+}
+
+.side-bar > a:first-child {
+  font-size: 10px;
+  margin-bottom: 100px;
 }
 
 .side-bar ul li a {
@@ -16,14 +37,108 @@
   align-items: center;
 }
 .side-bar ul li a span {
-  margin-left: 15px;
+  /* margin-left: 15px; */
   color: #ffffff;
 }
 
 .side-bar ul li a svg {
-  margin-bottom: 40px; /*Add spacing between SVG icons*/
-  fill: #ffffff;
+  margin-bottom: 20px; /*Add spacing between SVG icons*/
+  margin-top: 15px;
+  margin-left: 25px;
+  fill: #584843;
 }
+
+.side-bar ul li a p {
+  margin-top: 18px;
+  margin-left: 8px;
+  font-size: 17px;
+  color: #584843;
+  text-shadow: 0px 1px 0.5px #342a27;
+}
+
 .side-bar ul li :hover {
-  background-color: #000000; /* hover 시 박스 배경색 변경 */
+  font-size:25px;
+  translate: 0.3s;
 }
+
+.historyIcon{
+  width: 210px;
+  border-radius: 30px;
+  background-color: #e5dc78;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
+  margin-left: 0px;  
+
+}
+.statusIcon{
+  width: 210px;
+  margin-top: 20px;
+  border-radius: 30px;
+  background-color: #efeccd;
+  color: #584843;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
+
+}
+
+#startButton{
+  background-color: #efeccd;
+  text-align: center;
+  border: none;
+  margin-top: 20px;
+  height: 65px;
+  border-radius: 30px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+#startButton p{
+  /* margin-left: 20px; */
+  text-align: left;
+  margin-left: 20px;
+  margin-top: 15px;
+  font-size: 18px;
+  color: #584843;
+  text-shadow: 0px 1px 0.5px #342a27;
+}
+
+
+
+
+
+#stopButton{
+  background-color: #efeccd;
+  border: none;
+  margin-top: 20px;
+  height: 65px;
+  border-radius: 30px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+#stopButton p{
+  text-align: left;
+  margin-left: 20px;
+  margin-top: 15px;
+  font-size: 18px;
+  color: #584843;
+  text-shadow: 0px 1px 0.5px #342a27;
+}
+
+
+#resetButton{
+  background-color: #efeccd;
+  border: none;
+  margin-top: 20px;
+  height: 65px;
+  border-radius: 30px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
+  
+}
+
+#resetButton p{
+  text-align: left;
+  margin-left: 20px;
+  margin-top: 15px;
+  font-size:18px;
+  color: #584843;
+  text-shadow: 0px 1px 0.5px #342a27;
+}
+
+
