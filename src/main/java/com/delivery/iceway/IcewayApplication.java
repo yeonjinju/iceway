@@ -9,6 +9,8 @@ import org.springframework.amqp.core.AmqpAdmin;
 import org.springframework.amqp.core.Queue;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -24,7 +26,12 @@ import lombok.RequiredArgsConstructor;
 @EnableScheduling
 @RequiredArgsConstructor
 @SpringBootApplication
-public class IcewayApplication {
+public class IcewayApplication extends SpringBootServletInitializer {
+
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+		return builder.sources(IcewayApplication.class);	
+	}
 
 	private final DeliveryGenerator deliveryGenerator;
 	private final SensorMapper sensorMapper;
