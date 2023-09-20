@@ -1,14 +1,19 @@
 .content{
-    z-index: 1;
-    margin-left: 150px;
-    width: 89%;
-    height: 800px;
+    margin-left: 170px;
+    margin-top:10px;
+    margin-bottom:10px;
+    width: 87%;
+    height: 770px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+    position: absolute;
+    z-index: 2;
 }
 .mainContent{
     height: 800px;
-    width:75%;
+    width: 75%;
     float:left;
-    
+        
 }
 
 .alert{
@@ -17,11 +22,14 @@
     float: right;
     flex-direction: column;
 }
+
 #map{
     width: 98%;
     height: 80%;            
-    margin:20px;
+    margin: 20px;
+    background-color: white;
     border-radius: 15px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     
 }
 .subcontent{
@@ -33,11 +41,11 @@
 
 .chart{
     width:100%; 
-    height: 50%;
+    height: 80%;
     text-align: center;
     border-radius: 15px;
     color:#a2a1a1;
-    background-color: #f6f6f6;
+    background-color: #dbedfb;
     overflow: auto;
     display: flex; 
     justify-content: center; 
@@ -52,7 +60,9 @@ tr {
 
 th, td {
     border: 1px solid;
+    border-radius: 5px;
     width: 25%; /* 4개의 열이므로 100% */
+    color: #708ebd;
 }
 th{ 
     color: white;
@@ -60,11 +70,11 @@ th{
     
 }
 
-
 .productTable{
     border-radius: 15px;
     width: 95%;
-    margin: 10px;
+    margin: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .recallBtn {
@@ -108,7 +118,7 @@ th{
     text-align: center;
     border-radius: 15px;
     color:#a2a1a1;
-    background-color: #f6f6f6;
+    background-color: #dbedfb;
 }
 
 .recallBox h4{
@@ -122,16 +132,18 @@ th{
 /* 예를 들어, 배경색, 패딩, 테두리 등을 설정할 수 있습니다. */
     width:100%; 
     height: 55%;
-    margin-left: 10px;
+    /* margin-left: 10px; */
     border-radius: 15px;
     color:#a2a1a1;
-    background-color: #f6f6f6;
+    background-color: #dbedfb;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+
 }
 
 .recallAlert h4 {
-    color:#707070;
-    margin-left: 25px;
-    font-size: 15px;
+    color:#708ebd;
+    text-align: center;    
+    font-size: 18px;
 }
 
 .recallAlert p {
@@ -176,7 +188,6 @@ th{
 .delivery{
     width:100%; 
     height: 38%;
-    margin-left: 10px;
     margin-top: 20px;
     border-radius: 15px;
     text-align: center;
@@ -194,7 +205,7 @@ th{
     width: 100%;
     height: 100%;
     color: #708ebd;
-    background-color: #fdf3f3;
+    background-color: #dbedfb;
     display: flex;
     flex-direction: column;
     align-items: center; 
@@ -214,3 +225,20 @@ th{
 
 }
 
+/* body,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: #eef5fa;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+} */
