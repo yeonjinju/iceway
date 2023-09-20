@@ -45,15 +45,17 @@
 			<artifactId>mybatis-spring-boot-starter</artifactId>
 			<version>3.0.1</version>
 		</dependency>
-		<!-- <dependency>
+		<!-- 내장 톰켓 -->
+		<dependency> 
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
-		</dependency> -->
-		<dependency>
+		</dependency>
+		<!-- 외장 톰켓 -->
+		<!-- <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>
-		</dependency>
+		</dependency> -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
