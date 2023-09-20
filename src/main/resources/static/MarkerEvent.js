@@ -99,7 +99,7 @@ let recallUpdate = (data) => {
         newMessage.className = "alert alert-danger"; // 클래스 추가
         newMessage.setAttribute("role", "alert"); // role 속성 추가
         newMessage.innerHTML = `
-                    ${data[i].recall_name}님의 상품의 온도가 -10도 이상입니다
+                    ${data[i].recall_name}님 상품 온도 상승 알림
                 `;
         recallMessages.appendChild(newMessage);
 
