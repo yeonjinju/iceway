@@ -26,6 +26,7 @@ import lombok.RequiredArgsConstructor;
 @EnableScheduling
 @RequiredArgsConstructor
 @SpringBootApplication
+// public class IcewayApplication {
 public class IcewayApplication extends SpringBootServletInitializer {
 
 	@Override
@@ -92,7 +93,7 @@ public class IcewayApplication extends SpringBootServletInitializer {
 	 * 주기적으로 좌표를 전송하는 스케쥴러.
 	 * 이 메서드는 @Scheduled 어노테이션에 의해 주기적으로 실행됩니다.
 	 */
-	@Scheduled(fixedRate = 30000)
+	@Scheduled(fixedRate = 20000)
 	public void scheduleSendCoordinates() {
 		if (shouldRun.get()) {
 			int currentCount = runCount.get();

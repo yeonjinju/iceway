@@ -10,10 +10,12 @@ import org.springframework.stereotype.Service;
 import com.delivery.iceway.domain.History;
 
 import lombok.RequiredArgsConstructor;
+
 @Service
 @RequiredArgsConstructor
 public class HistoryServiceImpl implements HistoryService {
 	private final HistoryMapper historyMapper;
+
 	/**
 	 * 특정 조건에 따른 History 목록을 페이지네이션하여 조회한다.
 	 *
@@ -40,6 +42,7 @@ public class HistoryServiceImpl implements HistoryService {
 		getPagination(pageNum, dto);
 		return historyMapper.getHistory(dto);
 	}
+
 	/**
 	 * 페이징 정보를 계산하여 반환한다.
 	 *
@@ -66,6 +69,7 @@ public class HistoryServiceImpl implements HistoryService {
 		intArray[4] = totalRow;
 		return intArray;
 	}
+
 	/**
 	 * 검색 키워드와 조건을 처리하여 History 객체에 적용한다.
 	 *
@@ -148,21 +152,23 @@ public class HistoryServiceImpl implements HistoryService {
 		pairWord[1] = condition;
 		return pairWord;
 	}
+
 	@Override
 	public String[] recallArray(History dto) {
 		List<History> list = historyMapper.getHistory(dto);
 		String[] recallArray = new String[list.size()];
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
-		
-		for(int i = 0; i < list.size(); i++) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+		for (int i = 0; i < list.size(); i++) {
 			Timestamp delivery_time = list.get(i).getRecall_time();
 			Boolean recallStatus = list.get(i).isRecall_status();
 			String timeString = "";
-			
-			if(delivery_time != null) {
+
+			if (delivery_time != null) {
 				timeString = sdf.format(delivery_time);
+				timeString = timeString.replace(".0", "");
 			}
-			String formattedDate = recallStatus ? "O(" + timeString + ")" : "-";
+			String formattedDate = recallStatus ? timeString : "-";
 			recallArray[i] = formattedDate;
 		}
 		return recallArray;

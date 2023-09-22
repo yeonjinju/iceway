@@ -250,7 +250,7 @@ function dataSave(data) {
 document.addEventListener("DOMContentLoaded", () => {
   let mapContainer = document.getElementById("map");
   let mapOption = {
-    center: new kakao.maps.LatLng(37.507194, 127.022783),
+    center: new kakao.maps.LatLng(37.50732, 127.03390),
     level: 6,
   };
   map = new kakao.maps.Map(mapContainer, mapOption);

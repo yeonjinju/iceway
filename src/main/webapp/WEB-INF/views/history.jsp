@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -141,8 +142,8 @@
                             <td>${i.name}</td>
                             <td>${i.delivery_status ? "배송완료" : "배송중"}</td>
                             <td>${i.recall_status ? recallArray[loop.index] : "-"}</td>
-                            <td>${i.delivery_time}</td>
-                            <td>${i.arrival_time}</td>
+                            <td>${fn:substring(i.delivery_time, 0, 19)}</td>
+                            <td>${fn:substring(i.arrival_time, 0, 19)}</td>
                         </tr>
                     </c:forEach>
                 </tbody>
