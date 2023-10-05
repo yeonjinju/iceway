@@ -8,7 +8,6 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.delivery.iceway.domain.Delivery;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -18,13 +17,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 
 @Controller
-@RequestMapping("/status")
 @RequiredArgsConstructor
 public class StatusController {
 
     private final StatusMapper statusMapper;
 
-    @GetMapping
+    @GetMapping("/admin/status")
     public String getStatus() {
         return "status";
     }

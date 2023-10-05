@@ -45,7 +45,7 @@ document.addEventListener("keydown", (event) => {
       break;
     case "Enter":
       clearTable();
-      map.setCenter(new kakao.maps.LatLng(37.507194, 127.022783));
+      map.setCenter(new kakao.maps.LatLng(37.50732, 127.03390));
       map.setLevel(6);
       break;
     default:

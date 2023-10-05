@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.delivery.iceway.user.UserMapper">
+
+    <select id="findByUserName" resultType="User">
+        SELECT user_name as userName, user_pwd as password, user_role as role FROM admin WHERE user_name = #{userName}
+    </select>
+
+    <insert id="insertAll">
+        INSERT INTO admin (id, user_name, user_pwd, user_role)
+        VALUES (#{id}, #{userName}, #{password}, #{role})
+    </insert>
+
+    <delete id="resetAdmin">
+        DELETE FROM admin;
+    </delete>
+
+</mapper>

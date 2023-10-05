@@ -124,7 +124,7 @@ public class DeliveryGenerator {
      * @return 변화 후 온도
      */
     private int converter(int temperature) {
-        return threadLocalRandom.nextInt(10) < 8 ? temperature : temperature + 1;
+        return threadLocalRandom.nextInt(10) < 6 ? temperature : temperature + 1;
     }
 
     /**
@@ -152,7 +152,6 @@ public class DeliveryGenerator {
 
             @Override
             public void run() {
-                log.info("index: " + index);
                 try {
                     Optional<Boolean> optionalStatus = sensorMapper.getRecallStatus(id);
                     boolean recallStatus = optionalStatus.orElse(Boolean.FALSE);

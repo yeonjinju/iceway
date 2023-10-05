@@ -99,7 +99,7 @@ let recallUpdate = (data) => {
         newMessage.className = "alert alert-danger"; // 클래스 추가
         newMessage.setAttribute("role", "alert"); // role 속성 추가
         newMessage.innerHTML = `
-                    ${data[i].recall_name}님의 상품의 온도가 -10도 이상입니다
+                    ${data[i].recall_name}님 상품 온도 상승 알림
                 `;
         recallMessages.appendChild(newMessage);
 
@@ -184,7 +184,7 @@ function displayMarkerInfo(markerData) {
   buttonElement.addEventListener("click", function () {
     requestRecallUpdate();
     clearTable();
-    map.setCenter(new kakao.maps.LatLng(37.507194, 127.022783));
+    map.setCenter(new kakao.maps.LatLng(37.50732, 127.03390));
     map.setLevel(6);
   });
 
@@ -250,7 +250,7 @@ function dataSave(data) {
 document.addEventListener("DOMContentLoaded", () => {
   let mapContainer = document.getElementById("map");
   let mapOption = {
-    center: new kakao.maps.LatLng(37.507194, 127.022783),
+    center: new kakao.maps.LatLng(37.50732, 127.03390),
     level: 6,
   };
   map = new kakao.maps.Map(mapContainer, mapOption);

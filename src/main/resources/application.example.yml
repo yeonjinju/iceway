@@ -20,7 +20,15 @@
 #       enabled:
 #     queue:
 #       name:
+#     exchange:
+#       name: 
+#     routing:
+#       key: 
 
 # mybatis:
 #   type-aliases-package:
 #   mapper-locations:
+
+# kakao:
+#   api:
+#     key: 

@@ -10,7 +10,7 @@ import com.delivery.iceway.domain.History;
 import lombok.RequiredArgsConstructor;
 
 @Controller
-@RequestMapping("/history")
+@RequestMapping("/admin")
 @RequiredArgsConstructor
 public class HistoryController {
 
@@ -26,7 +26,7 @@ public class HistoryController {
 	 * @param dto       검색 조건을 담고 있는 History 객체.
 	 * @return 뷰 이름 ('history').
 	 */
-	@GetMapping
+	@GetMapping("/history")
 	public String getHistory(
 			Model model,
 			@RequestParam(defaultValue = "1") int pageNum,

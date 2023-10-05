@@ -29,8 +29,8 @@ public class KakaoDirections {
     private final WebClient webClient = WebClient.builder().build();
 
     // 기본 출발지의 위도와 경도를 설정합니다.
-    private final double defaultStartLatitude = 37.507194;
-    private final double defaultStartLongitude = 127.022783;
+    private final double defaultStartLatitude = 37.50732;
+    private final double defaultStartLongitude = 127.03390;
 
     /**
      * Kakao API에서 경로 정보를 가져와 Info 객체로 변환하여 반환합니다.
